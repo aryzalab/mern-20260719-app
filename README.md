@@ -18,12 +18,46 @@
 
 ## JSX - JavaScript Syntax Extension
 
--  JS + HTML Code
+- JS + HTML Code
 
 ## Virtual DOM
 
-## Component
+- Lightweight copy of real DOM
+- Whenever state change occurs:
+  - React updates the virtual DOM
+  - Compares the virtual DOM with previous DOM (Diffing)
+  - Updates only the changed parts in the Real DOM (Reconciliation)
+- Faster rendering
+- Performance is better
+
+## Components
+
+- UI Block
+- Reusable
+- Functional Component, Class Component
+- Functional components are stateless components by default
+- Class components are stateful components
+- Hooks: special function
+- Stateless: State can be updated, UI cannot be updated
+- Stateful: State/UI can be updated
+
+## Props (of a component)
+
+- Properties/attributes
+- Similar to HTML element attributes
 
 ## States
 
+- Mutable (changeable) object
+- Whenever state changes, UI is re-rendered
+- State value changes on user interation, event trigger or API calls
+
 ## Hooks
+
+- useState
+- useEffect
+- useRef
+- useReducer (x)
+- useContext (x)
+
+## Zustand (Global state management library)
