@@ -1,6 +1,7 @@
 import ButtonComponent from "./ButtonComponent";
 import Card from "./Card";
 import MyComponent from "./MyComponent";
+import Tasks from "./Tasks";
 import Title from "./Title";
 
 // root component
@@ -12,7 +13,7 @@ function App() {
   return (
     <>
       <section>
-        <MyComponent
+        {/* <MyComponent
           label="Hello from props"
           info="Lets learn about props"
           title="Hello from title"
@@ -20,10 +21,10 @@ function App() {
         />
         <MyComponent label="THis is a label" title={"title from second call"} />
 
-        <Title label="Label of Title" />
+        <Title label="Label of Title" /> */}
         <ButtonComponent />
 
-        <Card name={"Product 1"} category={"Category 1"} price={2134} />
+        {/* <Card name={"Product 1"} category={"Category 1"} price={2134} />
         <Card name={"Product 2"} category={"Category 2"} price={809} />
 
         <h1>Hello {name}</h1>
@@ -31,8 +32,10 @@ function App() {
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores
           deserunt commodi nostrum natus quis qui possimus at ad mollitia
           tempora.
-        </p>
+        </p> */}
       </section>
+
+      <Tasks />
 
       <section>hello</section>
     </>

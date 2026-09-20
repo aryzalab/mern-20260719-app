@@ -54,10 +54,17 @@
 
 ## Hooks
 
-- useState
-- useEffect
-- useRef
+- It is a special type of function in React.
+- Hooks are used to make functional component stateful.
+
+1. useState: used for local state management
+2. useEffect: used for side effects
+3. useRef: accessing DOM elements
 - useReducer (x)
 - useContext (x)
 
 ## Zustand (Global state management library)
+
+- Store: Like database of frontend
+- Action: Function that updates state
+- Dispatch: Function (Action) call
