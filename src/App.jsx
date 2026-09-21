@@ -1,5 +1,6 @@
 import ButtonComponent from "./ButtonComponent";
 import Card from "./Card";
+import Header from "./components/Header";
 import MyComponent from "./MyComponent";
 import Tasks from "./Tasks";
 import Title from "./Title";

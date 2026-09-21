@@ -68,3 +68,16 @@
 - Store: Like database of frontend
 - Action: Function that updates state
 - Dispatch: Function (Action) call
+
+## Routing
+
+- Route is a URL endpoint
+- Route defines which components/pages to show on the URL endpoint match
+
+/contact => Contact page route
+/ => Home page route
+/products => Product page route
+
+## layouts 
+
+- Shared UI block
