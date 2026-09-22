@@ -1,10 +1,8 @@
-import Header from "../components/Header";
-
 function AboutPage() {
   return (
-    <>
-      <h1>AboutPage</h1>
-    </>
+    <section>
+      <h1>About Page</h1>
+    </section>
   );
 }
 

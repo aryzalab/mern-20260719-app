@@ -1,30 +1,14 @@
 import { useEffect, useState } from "react";
-import ProductCard from "../components/products/ProductCard";
-import Loading from "../components/Loading";
+import ProductCard from "../products/ProductCard";
 
-function ProductsPage() {
-  const [loading, setLoading] = useState(true);
+function Products() {
   const [products, setProducts] = useState([]);
 
-  async function fetchProducts() {
-    try {
-      const data = await fetch(
-        "https://mern-20251103-api.vercel.app/api/products",
-      ).then((res) => res.json());
-
-      setProducts(data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    fetchProducts();
+    fetch("https://mern-20251103-api.vercel.app/api/products?limit=8")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
   }, []);
-
-  if (loading) return <Loading />;
 
   return (
     <section id="products">
@@ -47,4 +31,4 @@ function ProductsPage() {
   );
 }
 
-export default ProductsPage;
+export default Products;
