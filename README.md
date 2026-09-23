@@ -1,83 +1,15 @@
-# React with Next.js
+# Next.js
 
-## JS DOM
+- It is a full stack React.js framework for building web apps.
+- In addtion to building UI components, it also provides features like routing, styling, data fetching, rendering, optimization, etc.
+- It uses react server component
+- It is opinionated framework (file, folder convention)
 
-- Document Object Model (DOM)
-- DOM represents HTML Document as a tree of objects
-- DOM Manipulation is a process of using JS to dynamically update the content, styles, structure of html/webpage.
+## Features
 
-## React
-
-- Library for web and native user interfaces
-- Built and maintained by Facebook
-- Used to build single page app (one html file only)
-- Uses virtual DOM for rendering
-- Most popular frontend framework
-- Huge community
-- Job opportunities
-
-## JSX - JavaScript Syntax Extension
-
-- JS + HTML Code
-
-## Virtual DOM
-
-- Lightweight copy of real DOM
-- Whenever state change occurs:
-  - React updates the virtual DOM
-  - Compares the virtual DOM with previous DOM (Diffing)
-  - Updates only the changed parts in the Real DOM (Reconciliation)
-- Faster rendering
-- Performance is better
-
-## Components
-
-- UI Block
-- Reusable
-- Functional Component, Class Component
-- Functional components are stateless components by default
-- Class components are stateful components
-- Hooks: special function
-- Stateless: State can be updated, UI cannot be updated
-- Stateful: State/UI can be updated
-
-## Props (of a component)
-
-- Properties/attributes
-- Similar to HTML element attributes
-
-## States
-
-- Mutable (changeable) object
-- Whenever state changes, UI is re-rendered
-- State value changes on user interation, event trigger or API calls
-
-## Hooks
-
-- It is a special type of function in React.
-- Hooks are used to make functional component stateful.
-
-1. useState: used for local state management
-2. useEffect: used for side effects
-3. useRef: accessing DOM elements
-- useReducer (x)
-- useContext (x)
-
-## Zustand (Global state management library)
-
-- Store: Like database of frontend
-- Action: Function that updates state
-- Dispatch: Function (Action) call
-
-## Routing
-
-- Route is a URL endpoint
-- Route defines which components/pages to show on the URL endpoint match
-
-/contact => Contact page route
-/ => Home page route
-/products => Product page route
-
-## layouts 
-
-- Shared UI block
+1. Routing: file based routing
+2. Rendering: Client side rendering (CSR), Server side rendering (SSR), Static site generation (SSG)
+3. Optimization: images, fonts, scripts
+4. Data fetching: Async data fetching
+5. API routes
+6. Styling
