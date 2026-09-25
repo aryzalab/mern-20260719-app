@@ -1,5 +1,3 @@
-import React from "react";
-
 async function ProductDetailsPage({ params, searchParams }) {
   const productId = (await params).id;
   const query = await searchParams;

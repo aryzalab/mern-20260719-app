@@ -1,5 +1,11 @@
+"use client";
+
+import { useState } from "react";
+
 function AboutPage() {
-  return <div>AboutPage</div>;
+  const [count, setCount] = useState(1);
+
+  return <div>AboutPage {count}</div>;
 }
 
 export default AboutPage;
