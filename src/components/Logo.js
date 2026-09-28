@@ -1,16 +1,10 @@
-'use client'
+"use client";
 
 import { HOME_ROUTE } from "@/constants/routes";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function Logo() {
   const router = useRouter();
-  const params = useParams();
-  const searchParams = useSearchParams();
-
-  console.log(params.id)
-  console.log(searchParams.get("limit"))
-  console.log(searchParams.get("q"))
 
   return (
     <button

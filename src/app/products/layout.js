@@ -1,7 +1,13 @@
 import React from "react";
+import ProductBanner from "./_components/ProductBanner";
 
 function ProductsLayout({ children }) {
-  return <div>ProductsLayout {children}</div>;
+  return (
+    <>
+      <ProductBanner />
+      {children}
+    </>
+  );
 }
 
 export default ProductsLayout;

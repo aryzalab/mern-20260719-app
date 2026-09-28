@@ -1,11 +1,11 @@
-"use client";
-
-import { useState } from "react";
+export const metadata = {
+  title: "About | ElectroShop",
+  description: "",
+  keyword: "",
+};
 
 function AboutPage() {
-  const [count, setCount] = useState(1);
-
-  return <div>AboutPage {count}</div>;
+  return <div>AboutPage</div>;
 }
 
 export default AboutPage;

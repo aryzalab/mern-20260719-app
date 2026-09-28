@@ -97,3 +97,12 @@
 
 - useParams();
 - useSearchParams();
+
+## Metadata
+
+- Metadata api is used to define the metadata of the page
+- Can be used only in page.js/layout.js
+- Useful for Search engine optimization (SEO)
+- static: metadata
+- dynamic: generateMetadata
+- Note: It can only be used in react server component (not client)

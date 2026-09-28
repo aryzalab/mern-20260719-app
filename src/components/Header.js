@@ -3,7 +3,7 @@ import Nav from "./Nav";
 
 function Header() {
   return (
-    <header className="sticky w-full z-20 top-0 inset-s-0 shadow">
+    <header className="sticky w-full z-20 top-0 inset-s-0 shadow bg-white">
       <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Logo />
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

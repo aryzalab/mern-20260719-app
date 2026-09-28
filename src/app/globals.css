@@ -26,3 +26,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* class based theme */
+@custom-variant dark (&:where(.dark, .dark *));
+
+.card-body {
+  @apply bg-white p-4 rounded-2xl text-center;
+}
