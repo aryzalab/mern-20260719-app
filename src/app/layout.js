@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "Electro Shop",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <ToastContainer position="top-center" autoClose={1500} />
       </body>
     </html>
   );
