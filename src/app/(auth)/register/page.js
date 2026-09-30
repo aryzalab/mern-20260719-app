@@ -1,32 +1,39 @@
 "use client";
 
 import { signUp } from "@/api/auth";
-import { HOME_ROUTE, LOGIN_ROUTE } from "@/constants/routes";
+import { LOGIN_ROUTE } from "@/constants/routes";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Password from "../_components/Password";
+import { useState } from "react";
+import useAuthStore from "@/stores/authStore";
+import Spinner from "@/components/Spinner";
 
 function RegisterPage() {
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const router = useRouter();
+  const { registerUser } = useAuthStore.getState();
 
   function submitForm(data) {
+    setLoading(true);
+
     signUp({ ...data, address: { city: data.city, province: data.province } })
-      .then(() => {
-        router.push(HOME_ROUTE);
+      .then((res) => {
+        registerUser({ user: res.data });
 
         toast.success("Register successful.");
       })
       .catch((error) => {
         toast.error(error?.response.data?.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -187,9 +194,10 @@ function RegisterPage() {
         <div className="mt-6">
           <button
             type="submit"
-            className="py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer tracking-wide text-white border border-primary bg-primary hover:bg-primary transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary w-full mb-4"
+            className="flex items-center justify-center py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer tracking-wide text-white border border-primary bg-primary hover:bg-primary transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary w-full mb-4"
           >
             Create an account
+            {loading && <Spinner className="w-5 h-5 fill-primary" />}
           </button>
           <div className="text-slate-900 text-sm text-center dark:text-slate-50">
             Already have an account?{" "}

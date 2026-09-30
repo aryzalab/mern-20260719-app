@@ -1,32 +1,34 @@
 "use client";
 
 import { login } from "@/api/auth";
-import {
-  FORGOT_PASSWORD_ROUTE,
-  HOME_ROUTE,
-  REGISTER_ROUTE,
-} from "@/constants/routes";
+import { FORGOT_PASSWORD_ROUTE, REGISTER_ROUTE } from "@/constants/routes";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Password from "../_components/Password";
+import { useState } from "react";
+import Spinner from "@/components/Spinner";
+import useAuthStore from "@/stores/authStore";
 
 function LoginPage() {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
 
-  const router = useRouter();
+  const { loginUser } = useAuthStore.getState();
 
   function submitForm(data) {
+    setLoading(true);
+
     login(data)
-      .then(() => {
-        router.push(HOME_ROUTE);
+      .then((res) => {
+        loginUser({ user: res.data });
 
         toast.success("Login successful.");
       })
       .catch((error) => {
         toast.error(error?.response.data?.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -108,9 +110,10 @@ function LoginPage() {
         </div>
         <button
           type="submit"
-          className="w-full py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer tracking-wide text-white border border-primary bg-primary hover:bg-primary/90 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+          className="flex items-center justify-center gap-2 w-full py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer tracking-wide text-white border border-primary bg-primary hover:bg-primary/90 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
         >
           Sign in
+          {loading && <Spinner className="w-5 h-5 fill-primary" />}
         </button>
         <div className="text-slate-900 text-sm text-center dark:text-slate-50">
           Don't have an account?{" "}

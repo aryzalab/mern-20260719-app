@@ -1,22 +1,47 @@
+"use client";
+
+import useAuthStore from "@/stores/authStore";
 import Logo from "./Logo";
 import Nav from "./Nav";
+import Link from "next/link";
+import { LOGIN_ROUTE } from "@/constants/routes";
+import { logout } from "@/api/auth";
+import { useRouter } from "next/navigation";
 
 function Header() {
+  const isAuth = useAuthStore((state) => state.isAuth);
+
+  const { logoutUser } = useAuthStore.getState();
+
+  const router = useRouter();
+
+  function signOut() {
+    logoutUser(); // state
+    logout(); // api
+
+    router.push(LOGIN_ROUTE);
+  }
+
   return (
     <header className="sticky w-full z-20 top-0 inset-s-0 shadow bg-white">
       <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Logo />
-        <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button
-            type="button"
-            className="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary"
-            id="user-menu-button"
-            aria-expanded="false"
-            data-dropdown-toggle="user-dropdown"
-            data-dropdown-placement="bottom"
-          >
-            P
-          </button>
+        <div className="flex gap-2 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          {isAuth ? (
+            <button
+              onClick={signOut}
+              className="rounded bg-primary text-white px-4 py-1"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              href={LOGIN_ROUTE}
+              className="rounded bg-primary text-white px-4 py-1"
+            >
+              Sign In
+            </Link>
+          )}
           {/* Dropdown menu */}
           <div
             className="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
