@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 function Header() {
   const isAuth = useAuthStore((state) => state.isAuth);
+  const user = useAuthStore((state) => state.user);
 
   const { logoutUser } = useAuthStore.getState();
 
@@ -28,12 +29,15 @@ function Header() {
         <Logo />
         <div className="flex gap-2 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {isAuth ? (
-            <button
-              onClick={signOut}
-              className="rounded bg-primary text-white px-4 py-1"
-            >
-              Logout
-            </button>
+            <>
+              <button
+                onClick={signOut}
+                className="rounded bg-primary text-white px-4 py-1"
+              >
+                Logout
+              </button>
+              <h4>Hi {user.name}!</h4>
+            </>
           ) : (
             <Link
               href={LOGIN_ROUTE}

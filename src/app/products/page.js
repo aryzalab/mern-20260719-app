@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProductCard from "./_components/ProductCard";
+import { getProducts } from "@/api/products";
 
 export const metadata = {
   title: "Products",
@@ -7,9 +8,7 @@ export const metadata = {
 };
 
 async function ProductsPage() {
-  const products = await fetch(
-    "https://mern-20251103-api.vercel.app/api/products",
-  ).then((res) => res.json());
+  const products = await getProducts()
 
   return (
     <section
@@ -20,15 +19,7 @@ async function ProductsPage() {
         <h2 className="text-3xl font-semibold">Popular Products</h2>
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-8">
           {products.map((product) => (
-            <ProductCard
-              key={product._id}
-              id={product._id}
-              name={product.name}
-              category={product.category}
-              brand={product.brand}
-              price={product.price}
-              imageUrls={product.imageUrls}
-            />
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </div>

@@ -4,5 +4,6 @@ export const PRODUCTS_ROUTE = "/products";
 export const SERVICES_ROUTE = "/services";
 export const CONTACT_ROUTE = "/contact";
 export const LOGIN_ROUTE = "/login";
+export const CART_ROUTE = "/cart";
 export const FORGOT_PASSWORD_ROUTE = "/forgot-password";
 export const REGISTER_ROUTE = "/register";

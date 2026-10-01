@@ -1,8 +1,11 @@
 import { PRODUCTS_ROUTE } from "@/constants/routes";
 import Image from "next/image";
 import Link from "next/link";
+import AddToCart from "./AddToCart";
 
-function ProductCard({ name, brand, category, price, imageUrls, id }) {
+function ProductCard({ product }) {
+  const { name, brand, price, imageUrls, id } = product;
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md">
       <Link href={`${PRODUCTS_ROUTE}/${id}`}>
@@ -31,9 +34,7 @@ function ProductCard({ name, brand, category, price, imageUrls, id }) {
         <h5 className="text-primary text-2xl font-semibold my-2">
           Rs. {price}
         </h5>
-        <button className="bg-primary w-full px-5 py-2 text-white rounded-xl">
-          Add to Cart
-        </button>
+        <AddToCart product={product} />
       </div>
     </div>
   );
