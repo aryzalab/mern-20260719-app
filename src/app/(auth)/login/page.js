@@ -23,6 +23,8 @@ function LoginPage() {
       .then((res) => {
         loginUser({ user: res.data });
 
+        localStorage.setItem("authToken", res.data.token);
+
         toast.success("Login successful.");
       })
       .catch((error) => {

@@ -27,6 +27,7 @@ function RegisterPage() {
     signUp({ ...data, address: { city: data.city, province: data.province } })
       .then((res) => {
         registerUser({ user: res.data });
+        localStorage.setItem("authToken", res.data.token);
 
         toast.success("Register successful.");
       })

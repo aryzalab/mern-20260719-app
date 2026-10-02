@@ -1,15 +1,10 @@
-async function fetchProductById(id) {
-  const product = await fetch(
-    `https://mern-20251103-api.vercel.app/api/products/${id}`,
-  ).then((res) => res.json());
+import { getProductById } from "@/api/products";
 
-  return product;
-}
 
 export const generateMetadata = async ({ params }) => {
   const productId = (await params).id;
 
-  const product = await fetchProductById(productId);
+  const product = await getProductById(productId);
 
   return {
     title: product.name,
@@ -21,7 +16,7 @@ async function ProductDetailsPage({ params, searchParams }) {
   const productId = (await params).id;
   const query = await searchParams;
 
-  const product = await fetchProductById(productId);
+  const product = await getProductById(productId);
 
   return (
     <pre>

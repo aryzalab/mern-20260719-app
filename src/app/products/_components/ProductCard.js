@@ -4,7 +4,7 @@ import Link from "next/link";
 import AddToCart from "./AddToCart";
 
 function ProductCard({ product }) {
-  const { name, brand, price, imageUrls, id } = product;
+  const { name, brand, price, imageUrls, _id: id } = product;
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md">
