@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
+import MainLayout from "@/layouts/MainLayout";
 
 export const metadata = {
   title: "Electro Shop",
@@ -10,13 +11,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`h-full`}>
-      <body className="min-h-full flex flex-col">
+    <html lang="en">
+      <MainLayout>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen dark:bg-gray-900">{children}</main>
         <Footer />
         <ToastContainer position="top-center" autoClose={1500} />
-      </body>
+      </MainLayout>
     </html>
   );
 }

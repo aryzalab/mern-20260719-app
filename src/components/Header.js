@@ -7,6 +7,8 @@ import Link from "next/link";
 import { LOGIN_ROUTE } from "@/constants/routes";
 import { logout } from "@/api/auth";
 import { useRouter } from "next/navigation";
+import CartButton from "./CartButton";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 function Header() {
   const isAuth = useAuthStore((state) => state.isAuth);
@@ -24,10 +26,12 @@ function Header() {
   }
 
   return (
-    <header className="sticky w-full z-20 top-0 inset-s-0 shadow bg-white">
+    <header className="sticky w-full z-20 top-0 inset-s-0 shadow bg-white dark:bg-gray-950 dark:text-white">
       <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Logo />
         <div className="flex gap-2 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <ThemeSwitcher />
+          <CartButton />
           {isAuth ? (
             <>
               <button

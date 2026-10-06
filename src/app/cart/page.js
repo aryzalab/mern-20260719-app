@@ -8,10 +8,12 @@ import React from "react";
 import { FaMinus, FaPlus, FaRegHeart } from "react-icons/fa6";
 
 import RemoveFromCart from "./_components/RemoveFromCart";
-
-const DELIVERY_CHARGE = 100;
-const DISCOUNT_PERCENT = 0.1; // 10%
-const TAX_PERCENT = 0.13; // 13%
+import Checkout from "./_components/Checkout";
+import {
+  DELIVERY_CHARGE,
+  DISCOUNT_PERCENT,
+  TAX_PERCENT,
+} from "@/constants/order";
 
 const CartPage = () => {
   const products = useCartStore((state) => state.products);
@@ -42,8 +44,11 @@ const CartPage = () => {
                         className="shrink-0 md:order-1"
                       >
                         <Image
-                          className=" h-20 w-20"
-                          src={product.imageUrls[0]}
+                          className=" object-cover h-20 w-20"
+                          src={
+                            product.imageUrls[0] ??
+                            "/assets/images/placeholder.png"
+                          }
                           alt={product.name}
                           height={100}
                           width={100}
@@ -139,7 +144,7 @@ const CartPage = () => {
                       Tax
                     </dt>
                     <dd className="text-base font-medium text-gray-900 dark:text-white">
-                      Rs. {totalPrice * TAX_PERCENT}
+                      Rs. {Math.ceil(totalPrice * TAX_PERCENT)}
                     </dd>
                   </dl>
                 </div>
@@ -151,14 +156,12 @@ const CartPage = () => {
                     Rs.{" "}
                     {totalPrice -
                       totalPrice * DISCOUNT_PERCENT +
-                      totalPrice * TAX_PERCENT +
+                      Math.ceil(totalPrice * TAX_PERCENT) +
                       DELIVERY_CHARGE}
                   </dd>
                 </dl>
               </div>
-              <button className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary dark:focus:ring-primary-800">
-                Proceed to Checkout
-              </button>
+              <Checkout />
               <div className="flex items-center justify-center gap-2">
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   {" "}
