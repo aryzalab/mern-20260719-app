@@ -40,7 +40,7 @@ function Header() {
               >
                 Logout
               </button>
-              <h4>Hi {user.name}!</h4>
+              <h4>Hi {user?.name}!</h4>
             </>
           ) : (
             <Link

@@ -1,7 +1,10 @@
-import { cancelOrder } from "@/api/private/orders";
+import { cancelOrder, payViaCash, payViaKhalti } from "@/api/private/orders";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const OrderActions = ({ id, status }) => {
+  const router = useRouter();
+
   function onCancelOrder() {
     if (confirm("Are you sure?")) {
       cancelOrder(id)
@@ -14,14 +17,47 @@ const OrderActions = ({ id, status }) => {
     }
   }
 
+  function onPayViaCash() {
+    payViaCash(id)
+      .then((res) => {
+        toast.success("Order confirmed.");
+
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error(error.response.data?.message);
+      });
+  }
+
+  function onPayViaKhalti() {
+    payViaKhalti(id)
+      .then((res) => {
+        console.log(res.data);
+
+        // redirect to khalti payment gateway
+        // res.data.payment_url
+
+        window.location.href = res.data.payment_url;
+      })
+      .catch((error) => {
+        toast.error(error.response.data?.message);
+      });
+  }
+
   if (status !== "PENDING") return;
 
   return (
     <div className="mt-8 flex flex-wrap gap-4">
-      <button className="flex items-center gap-2.5 px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">
+      <button
+        onClick={onPayViaCash}
+        className="flex items-center gap-2.5 px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700"
+      >
         Cash
       </button>
-      <button className="flex items-center gap-2.5 px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">
+      <button
+        onClick={onPayViaKhalti}
+        className="flex items-center gap-2.5 px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700"
+      >
         Khalti
       </button>
       <button className="flex items-center gap-2.5 px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">

@@ -99,7 +99,7 @@ const OrdersPage = () => {
                           item.product?.imageUrls[0] ??
                           "/assets/images/placeholder.png"
                         }
-                        alt={item.product.name}
+                        alt={item.product?.name ?? "img"}
                         className="w-full h-full object-contain"
                         height={64}
                         width={64}
@@ -107,7 +107,7 @@ const OrdersPage = () => {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-slate-900 dark:text-slate-50">
-                        {item.product.name}
+                        {item.product?.name}
                       </p>
                       <p className="text-xs text-slate-600 mt-1.5 dark:text-slate-400">
                         Qty: {item.quantity}
