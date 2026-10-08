@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import OrderStatus from "./_components/OrderStatus";
 import OrderActions from "./_components/OrderActions";
+import { toast } from "react-toastify";
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -13,7 +14,10 @@ const OrdersPage = () => {
   useEffect(() => {
     getOrdersByUser()
       .then((data) => setOrders(data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toast.error(error.response.data?.message);
+        console.log(error);
+      });
   }, []);
 
   return (
