@@ -1,6 +1,6 @@
 "use client";
 
-import { HOME_ROUTE } from "@/constants/routes";
+import { DASHBOARD_ROUTE, HOME_ROUTE } from "@/constants/routes";
 import { ROLE_ADMIN } from "@/constants/userRoles";
 import useAuthStore from "@/stores/authStore";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ function AuthLayout({ children }) {
   useEffect(() => {
     if (isAuth) {
       if (user?.roles.includes(ROLE_ADMIN)) {
-        router.push("/dashboard");
+        router.push(DASHBOARD_ROUTE);
       } else {
         // redirect to homepage
         router.push(HOME_ROUTE);

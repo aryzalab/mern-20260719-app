@@ -1,8 +1,16 @@
+"use client";
 import Link from "next/link";
-import Logo from "./Logo";
 import { CONTACT_ROUTE, HOME_ROUTE, PRODUCTS_ROUTE } from "@/constants/routes";
+import useAuthStore from "@/stores/authStore";
+import { usePathname } from "next/navigation";
 
 function Footer() {
+  const isAuth = useAuthStore((state) => state.isAuth);
+
+  const pathName = usePathname();
+
+  if (pathName.startsWith("/admin")) return null;
+
   return (
     <footer className="bg-primary text-white">
       <div className="mx-auto w-full max-w-7xl p-4 py-6 lg:py-8">

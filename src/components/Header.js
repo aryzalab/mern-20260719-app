@@ -6,24 +6,17 @@ import Nav from "./Nav";
 import Link from "next/link";
 import { LOGIN_ROUTE } from "@/constants/routes";
 import { logout } from "@/api/auth";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import CartButton from "./CartButton";
 import ThemeSwitcher from "./ThemeSwitcher";
+import Account from "./Account";
 
 function Header() {
   const isAuth = useAuthStore((state) => state.isAuth);
-  const user = useAuthStore((state) => state.user);
 
-  const { logoutUser } = useAuthStore.getState();
+  const pathName = usePathname();
 
-  const router = useRouter();
-
-  function signOut() {
-    logoutUser(); // state
-    logout(); // api
-
-    router.push(LOGIN_ROUTE);
-  }
+  if (pathName.startsWith("/admin")) return null;
 
   return (
     <header className="sticky w-full z-20 top-0 inset-s-0 shadow bg-white dark:bg-gray-950 dark:text-white">
@@ -33,15 +26,7 @@ function Header() {
           <ThemeSwitcher />
           <CartButton />
           {isAuth ? (
-            <>
-              <button
-                onClick={signOut}
-                className="rounded bg-primary text-white px-4 py-1"
-              >
-                Logout
-              </button>
-              <h4>Hi {user?.name}!</h4>
-            </>
+            <Account />
           ) : (
             <Link
               href={LOGIN_ROUTE}

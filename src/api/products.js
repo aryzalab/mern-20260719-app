@@ -5,8 +5,6 @@ import axios from "axios";
 export const getProducts = async (query) => {
   const filter = formatQuery(query?.filter);
 
-  console.log(filter)
-
   const response = await axios.get(`${config.apiUrl}/api/products?${filter}`);
 
   return response.data;
