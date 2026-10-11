@@ -8,7 +8,6 @@ import {
 import useAuthStore from "@/stores/authStore";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import Logout from "./Logout";
 
@@ -41,7 +40,7 @@ const Account = () => {
         className="flex items-center gap-2"
       >
         <Image
-          src="/assets/images/placeholder.png"
+          src={user?.profileImageUrl ?? "/assets/images/placeholder.png"}
           alt={user.name}
           height={64}
           width={64}

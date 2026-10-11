@@ -25,8 +25,10 @@ const AdminLayout = ({ children }) => {
 
   return (
     <div>
-      <Sidebar />
-      <div className="px-4 py-3 sm:py-5 sm:ml-64 bg-white dark:bg-gray-900">{children}</div>
+      <Sidebar userRoles={user?.roles} />
+      <div className="px-4 py-3 sm:py-5 sm:ml-64 bg-white dark:bg-gray-900">
+        {children}
+      </div>
     </div>
   );
 };

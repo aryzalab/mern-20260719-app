@@ -2,14 +2,44 @@
 
 import { getOrderById, updateOrderStatus } from "@/api/private/orders";
 import Spinner from "@/components/Spinner";
-import { useParams } from "next/navigation";
+import { ORDER_MANAGEMENT_ROUTE } from "@/constants/routes";
+import { ROLE_ADMIN } from "@/constants/userRoles";
+import useAuthStore from "@/stores/authStore";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const UpdateOrderPage = () => {
   const [order, setOrder] = useState();
 
+  const { user } = useAuthStore.getState();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user?.roles.includes(ROLE_ADMIN)) {
+      router.push(ORDER_MANAGEMENT_ROUTE);
+    }
+  }, []);
+
+  if (user == null) return;
+
   const params = useParams();
+
+  function updateOrder(e) {
+    e.preventDefault();
+
+    updateOrderStatus(order._id, { status: order.status })
+      .then(() => {
+        toast.success("Order updated successfully");
+
+        router.back();
+      })
+      .catch((error) => {
+        toast.error(error.response.data?.message);
+        console.error("Error updating order:", error);
+      });
+  }
 
   useEffect(() => {
     getOrderById(params.id)
@@ -26,21 +56,7 @@ const UpdateOrderPage = () => {
   }
 
   return (
-    <form
-      className="max-w-sm mx-auto space-y-5"
-      onSubmit={(e) => {
-        e.preventDefault();
-
-        updateOrderStatus(order._id, { status: order.status })
-          .then(() => {
-            toast.success("Order updated successfully");
-          })
-          .catch((error) => {
-            toast.error(error.response.data?.message);
-            console.error("Error updating order:", error);
-          });
-      }}
-    >
+    <form className="max-w-sm mx-auto space-y-5" onSubmit={updateOrder}>
       <label
         htmlFor="order"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

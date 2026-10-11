@@ -29,11 +29,7 @@ const OrderManagementPage = () => {
       });
   }, []);
 
-  return (
-    <div>
-      <OrdersTable orders={orders} />
-    </div>
-  );
+  return <OrdersTable orders={orders} />;
 };
 
 export default OrderManagementPage;

@@ -17,3 +17,4 @@ export const UPDATE_PRODUCT_ROUTE = `${PRODUCT_MANAGEMENT_ROUTE}/update`;
 export const ORDER_MANAGEMENT_ROUTE = "/admin/order-management";
 export const UPDATE_ORDER_ROUTE = `${ORDER_MANAGEMENT_ROUTE}/update`;
 export const USER_MANAGEMENT_ROUTE = "/admin/user-management";
+export const UPDATE_USER_ROUTE = `${USER_MANAGEMENT_ROUTE}/update`;
