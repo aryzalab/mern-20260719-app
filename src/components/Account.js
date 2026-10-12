@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import Logout from "./Logout";
+import { ROLE_CUSTOMER } from "@/constants/userRoles";
 
 const Account = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,12 +51,14 @@ const Account = () => {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg py-4 px-3 z-10 space-y-2">
           <h4>Hi {user?.name}!</h4>
-          <Link
-            href={DASHBOARD_ROUTE}
-            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 rounded"
-          >
-            Dashboard
-          </Link>
+          {!user?.roles.includes(ROLE_CUSTOMER) && (
+            <Link
+              href={DASHBOARD_ROUTE}
+              className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 rounded"
+            >
+              Dashboard
+            </Link>
+          )}
           <Link
             href={ACCOUNT_ROUTE}
             className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 rounded"

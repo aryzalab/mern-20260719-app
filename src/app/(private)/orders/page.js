@@ -7,18 +7,24 @@ import { useEffect, useState } from "react";
 import OrderStatus from "./_components/OrderStatus";
 import OrderActions from "./_components/OrderActions";
 import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
+import OrderFilter from "./_components/OrderFilter";
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
 
+  const searchParams = useSearchParams();
+
+  const status = searchParams.get("status");
+
   useEffect(() => {
-    getOrdersByUser()
+    getOrdersByUser(status ?? "")
       .then((data) => setOrders(data))
       .catch((error) => {
         toast.error(error.response.data?.message);
         console.log(error);
       });
-  }, []);
+  }, [status]);
 
   return (
     <section className="bg-gray-50 px-4 py-8 md:px-8 dark:bg-gray-900">
@@ -34,38 +40,7 @@ const OrdersPage = () => {
           </div>
         </div>
         {/* filters */}
-        <div className="flex flex-wrap items-center gap-8 mt-12">
-          <div
-            className="flex flex-wrap items-center gap-3"
-            role="group"
-            aria-label="Filter orders"
-          >
-            <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
-              Filter by:
-            </span>
-            <button
-              aria-pressed="true"
-              className="px-3.5 py-2 text-white text-sm font-medium rounded-md bg-blue-600 border border-blue-600 transition-colors cursor-pointer hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-            >
-              All Orders
-            </button>
-            <button className="px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 transition-colors cursor-pointer hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">
-              Pending
-            </button>
-            <button className="px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 transition-colors cursor-pointer hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">
-              Confirmed
-            </button>
-            <button className="px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 transition-colors cursor-pointer hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">
-              Shipped
-            </button>
-            <button className="px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 transition-colors cursor-pointer hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">
-              Delivered
-            </button>
-            <button className="px-3.5 py-2 text-slate-900 text-sm font-medium rounded-md bg-white border border-slate-300 transition-colors cursor-pointer hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-neutral-700 dark:border-neutral-700">
-              Cancelled
-            </button>
-          </div>
-        </div>
+        <OrderFilter status={status} />
         <ul className="space-y-6 mt-6">
           {orders.map((order) => (
             <li

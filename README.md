@@ -106,3 +106,9 @@
 - static: metadata
 - dynamic: generateMetadata
 - Note: It can only be used in react server component (not client)
+
+========================
+
+- Product details page design
+- Localization
+- Pagination

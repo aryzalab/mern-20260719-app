@@ -16,8 +16,8 @@ export const getOrdersByMerchant = async () => {
   return response.data;
 };
 
-export const getOrdersByUser = async () => {
-  const response = await api.get("/api/orders/users");
+export const getOrdersByUser = async (status) => {
+  const response = await api.get(`/api/orders/users?status=${status}`);
 
   return response.data;
 };
