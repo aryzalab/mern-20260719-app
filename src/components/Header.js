@@ -5,11 +5,11 @@ import Logo from "./Logo";
 import Nav from "./Nav";
 import Link from "next/link";
 import { LOGIN_ROUTE } from "@/constants/routes";
-import { logout } from "@/api/auth";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import CartButton from "./CartButton";
 import ThemeSwitcher from "./ThemeSwitcher";
 import Account from "./Account";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 function Header() {
   const isAuth = useAuthStore((state) => state.isAuth);
@@ -23,6 +23,7 @@ function Header() {
       <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Logo />
         <div className="flex gap-2 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <LanguageSwitcher />
           <ThemeSwitcher />
           <CartButton />
           {isAuth ? (

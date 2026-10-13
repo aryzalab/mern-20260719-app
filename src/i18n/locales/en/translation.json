@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "products": "Products",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Explore our latest fashion today"
+  },
+  "login": {
+    "success": "Login successful!"
+  }
+}

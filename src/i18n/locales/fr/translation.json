@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "D'accueil",
+    "about": "à propos",
+    "products": "produits",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Découvrez nos dernières nouveautés mode dès aujourd'hui"
+  },
+  "login": {
+    "success": "Connexion réussie !"
+  }
+}

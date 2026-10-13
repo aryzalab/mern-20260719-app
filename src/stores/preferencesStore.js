@@ -6,10 +6,14 @@ const usePreferenceStore = create(
     persist(
       (set, get) => ({
         theme: "light",
+        language: "en",
         toggleTheme: () => {
           const theme = get().theme;
 
           set({ theme: theme == "light" ? "dark" : "light" });
+        },
+        changeLanguage: (language) => {
+          set({ language });
         },
       }),
       {

@@ -9,12 +9,15 @@ import Password from "../_components/Password";
 import { useState } from "react";
 import Spinner from "@/components/Spinner";
 import useAuthStore from "@/stores/authStore";
+import { useTranslation } from "react-i18next";
 
 function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
 
   const { loginUser } = useAuthStore.getState();
+
+  const { t } = useTranslation();
 
   function submitForm(data) {
     setLoading(true);
@@ -25,7 +28,7 @@ function LoginPage() {
 
         localStorage.setItem("authToken", res.data.token);
 
-        toast.success("Login successful.");
+        toast.success(t("login.success"));
       })
       .catch((error) => {
         toast.error(error?.response.data?.message);

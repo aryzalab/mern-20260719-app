@@ -6,25 +6,25 @@ import {
   SERVICES_ROUTE,
 } from "./routes";
 
-const navMenu = [
+const navMenu = (t) => [
   {
-    label: "Home",
+    label: t("nav.home"),
     route: HOME_ROUTE,
   },
   {
-    label: "About",
+    label: t("nav.about"),
     route: ABOUT_ROUTE,
   },
   {
-    label: "Products",
+    label: t("nav.products"),
     route: PRODUCTS_ROUTE,
   },
   {
-    label: "Services",
+    label: t("nav.services"),
     route: SERVICES_ROUTE,
   },
   {
-    label: "Contact",
+    label: t("nav.contact"),
     route: CONTACT_ROUTE,
   },
 ];
